@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Calendário Menstrual | VidaDelas</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f4f6f9;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.topo{
+background:#E91E63;
+padding:20px;
+color:white;
+text-align:center;
+}
+
+.card{
+border:none;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.btn-rosa{
+background:#E91E63;
+color:white;
+}
+
+.btn-rosa:hover{
+background:#d81b60;
+color:white;
+}
+
+.resultado{
+display:none;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topo">
+
+<h2>📅 Calendário Menstrual</h2>
+
+<p>Acompanhe seu ciclo com facilidade.</p>
+
+</div>
+
+<div class="container mt-5">
+
+<div class="card p-4">
+
+<h4>Informe os dados</h4>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Primeiro dia da última menstruação</label>
+
+<input type="date" id="data" class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Duração média do ciclo</label>
+
+<select id="ciclo" class="form-control">
+
+<option value="21">21 dias</option>
+<option value="24">24 dias</option>
+<option value="26">26 dias</option>
+<option value="28" selected>28 dias</option>
+<option value="30">30 dias</option>
+<option value="32">32 dias</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button onclick="calcular()" class="btn btn-rosa">
+
+Calcular
+
+</button>
+
+<div id="resultado" class="resultado alert alert-success">
+
+<h5>Resultado</h5>
+
+<p id="texto"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let data=document.getElementById("data").value;
+
+let ciclo=parseInt(document.getElementById("ciclo").value);
+
+if(data==""){
+
+alert("Informe a data.");
+
+return;
+
+}
+
+let ultima=new Date(data);
+
+let proxima=new Date(ultima);
+
+proxima.setDate(proxima.getDate()+ciclo);
+
+document.getElementById("resultado").style.display="block";
+
+document.getElementById("texto").innerHTML=
+
+"🩷 Próxima menstruação prevista para: <strong>"+
+
+proxima.toLocaleDateString('pt-BR')+
+
+"</strong><br><br>"
+
++
+
+"💡 Lembre-se: esta é apenas uma estimativa. Caso seu ciclo seja irregular ou você tenha dúvidas sobre sua saúde, procure orientação de um profissional de saúde.";
+
+}
+
+</script>
+
+</body>
+</html>
